@@ -17,6 +17,7 @@ colnames(df_all)[1] <- "uid"
 for(col in c("name", "category", "event", "place", "section")){
   df_all[,col] <- as.factor(df_all[,col])
 }
+df_all$amount_log <- log(df_all$amount)
 
 # ==== Check the data ====
 
@@ -34,3 +35,17 @@ df_all %>%
 
 # ==== Export the data ====
 export_df(df_all, file_name = "data", directory = "", addDateTime = FALSE)
+
+# === Regression Models ====
+# Simple OLS
+res <- lm(amount_log~date+name+category+section ,data = df_all)
+summary(res)
+par(mfrow=c(2,2))
+plot(res)
+par(mfrow=c(1,1))
+plot(predict(res), res$mode$amount_log)
+cef <- data.frame(res$coefficients)
+prd <- cef[1,] + cef[2,]*as.numeric(Sys.time()) + cef[3,] + cef[4,]
+e <- sum(rep(1,100)/factorial(0:99))
+amnt <- prd^e
+amnt
