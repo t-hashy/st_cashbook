@@ -12,14 +12,14 @@ check_data <- function(df, plot = FALSE) {
 }
 
 ## ---- Export data-frame ----
-export_df <- function(data, file_name = "test", directory = "data", file_type = "Rds", addDateTime = TRUE) {
+export_df <- function(data, file_name = "test", directory = "data/", file_type = "Rds", addDateTime = TRUE) {
   # Set file name
   file <- NULL
   if(addDateTime){
     now <- dt_to_str()
-    file <- paste(directory, "/", file_name, "_", now, ".", file_type, sep = "")
+    file <- paste(directory, file_name, "_", now, ".", file_type, sep = "")
   }else{
-    file <- paste(directory, "/", file_name, ".", file_type, sep = "")
+    file <- paste(directory, file_name, ".", file_type, sep = "")
   }
   # Convert into file
   if(file_type == "Rds"){
