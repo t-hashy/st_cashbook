@@ -1,13 +1,9 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
+# ==== Import data from Google sheets ====
+df_dt <- read_sheet(shtID, sheet = shtName_data)
+df_ctg <- read_sheet(shtID, sheet = shtName_ctg)
+df_mail <- read_sheet(shtID, sheet = shtName_mail)
+df_plc <- read_sheet(shtID, sheet = shtName_place)
+df_sec <- read_sheet(shtID, sheet = shtName_sec)
+df_evt <- read_sheet(shtID, shtName_ev)
 
-library(shiny)
-
-# Run the application 
-shinyApp(ui = ui, server = server)
+# ==== Merge sheets =====

@@ -1,17 +1,3 @@
-# === Basic Loadings ===
-# Basics
-library(tidyverse) # Data frames handling
-library(dplyr) # Data base management
-library(ggplot2) # Plotting
-library(GGally) # Multiple variables
-# Interactive plotting
-library(DT) # Interactive data table
-library(plotly) # Interactive plotting
-# Shiny
-library(shiny) # Shiny 
-
-
-
 # ==== DATA FRAME ====
 
 ## ---- Check the basic stats of the data ----
