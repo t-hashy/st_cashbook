@@ -20,3 +20,6 @@ shtName_place <- "lstPlaces"
 shtName_ctg <- "lstCategories"
 shtName_sec <- "lstSections"
 shtName_ev <- "lstEvents"
+
+# ==== Methodology ====
+e <- sum(rep(1,100)/factorial(0:99))
