@@ -38,4 +38,4 @@ ggplotly(ggplot())
 browseVignettes(package = "dplyr")
 
 # ==== Export the data ====
-export_df(df_all, file_name = "data", directory = "sub/", addDateTime = FALSE)
+export_df(df_all, file_name = "data", directory = "sub", addDateTime = FALSE)
