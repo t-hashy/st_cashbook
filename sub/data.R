@@ -15,7 +15,8 @@ df_all <- merge(df_dt, df_mail, by = "email", all.x = TRUE) %>%
   select(c("id_ex", "date","amount", "name", "category", "event", "place", "section"))
 colnames(df_all)[1] <- "uid"
 for(col in c("name", "category", "event", "place", "section")){
-  df_all[,col] <- as.factor(df_all[,col])
+  df_all[,col] <- fct_infreq(df_all[,col]) %>%
+    fct_lump_n(15)
 }
 
 # ==== Check the data ====
@@ -23,14 +24,18 @@ for(col in c("name", "category", "event", "place", "section")){
 # Basic check
 check_data(df_all, plot = TRUE)
 
-# Deeper plot
+# Multiple variables
 df_all %>%
-  select(!c(uid,place,name, event, section)) %>%
+  select(!c(uid,place,name, event)) %>%
   ggpairs(
     mapping = aes(color = category, alpha = 0.6), # Describe factor col name that shows as color variation (also write without double-quotation)
     lower = list(continuous = "smooth", combo = "facetdensity"),
     diag = list(continuous = "barDiag")
   )
+
+# Plotly
+ggplotly(ggplot())
+browseVignettes(package = "dplyr")
 
 # ==== Export the data ====
 export_df(df_all, file_name = "data", directory = "sub/", addDateTime = FALSE)
