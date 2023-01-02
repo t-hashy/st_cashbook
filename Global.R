@@ -19,6 +19,8 @@ library(googlesheets4) # Google sheet
 
 # Shiny
 library(shiny) # Shiny
+library(fontawesome) # Fontawesome(fa)
+library(htmltools) # Arrange html
 
 # ==== Environmental Variables ====
 
@@ -135,10 +137,12 @@ syncWithGSS <-  function(){
     merge(., df_plc, by = "id_place", all.x = TRUE) %>%
     merge(., df_sec, by = "id_section", all.x = TRUE) %>%
     select(c("id_ex", "date","amount", "name", "category", "event", "place", "section"))
+  
+  # Shape types of the data
+  df_sht$date <- as.Date(df_sht$date, format="%y-%m-%d")
   colnames(df_sht)[1] <- "uid"
   for(col in c("name", "category", "event", "place", "section")){
-    df_sht[,col] <- fct_infreq(df_sht[,col]) %>%
-      fct_lump_n(15)
+    df_sht[,col] <- fct_infreq(df_sht[,col])
   }
   
   # Merge rds and Google sheet ----
