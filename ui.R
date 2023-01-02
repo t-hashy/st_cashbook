@@ -1,22 +1,23 @@
-# Define UI for application that draws a histogram
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("CASH BOOK sana and takahiro"),
   
-  # Sidebar with a slider input for number of bins 
+  # Inputs
+  
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+      tags$h2("DATA INPUT"),
+      dateInput("date", label = "Date"),
+      selectInput("name", label = "Name", choices = df_all$name, selected = tail(df_all$name,1)),
+      selectInput("place", label = "Place", choices = df_all$place, selected = mode(df_all$place[!is.na(df_all$place)])),
+      selectInput("category", label = "Category", choices = df_all$category, selected = mode(df_all$category[!is.na(df_all$category)])),
+      selectInput("event", label = "Event", choices = df_all$event, selected = mode(df_all$event[!is.na(df_all$event)])),
+      numericInput("amount", label = "Price", value = median(df_all$amount))
     ),
     
-    # Show a plot of the generated distribution
     mainPanel(
-      plotOutput("distPlot")
+      plotOutput(plot(df_all))
     )
   )
 )
