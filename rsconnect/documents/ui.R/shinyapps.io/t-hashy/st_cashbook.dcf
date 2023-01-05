@@ -1,0 +1,13 @@
+name: st_cashbook
+title: st_cashbook
+username:
+account: t-hashy
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7977706
+bundleId: 6699340
+url: https://t-hashy.shinyapps.io/st_cashbook/
+when: 1672891756.58168
+lastSyncTime: 1672891756.58169
+asMultiple: FALSE
+asStatic: FALSE
