@@ -5,9 +5,9 @@ account: t-hashy
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7977558
-bundleId: 6699272
+bundleId: 6699276
 url: https://t-hashy.shinyapps.io/stCashbook/
-when: 1672888926.22944
-lastSyncTime: 1672888926.22946
+when: 1672889276.9748
+lastSyncTime: 1672889276.97481
 asMultiple: FALSE
 asStatic: FALSE

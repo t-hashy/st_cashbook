@@ -81,13 +81,13 @@ syncWithGSS <-  function(){
   df_rds <- df_all
   
   # Read google sheets ----
-  message("Read data from google sheets")
-  df_dt <- read_sheet(shtID, sheet = shtName_data)
-  df_ctg <- read_sheet(shtID, sheet = shtName_ctg)
-  df_mail <- read_sheet(shtID, sheet = shtName_mail)
-  df_plc <- read_sheet(shtID, sheet = shtName_place)
-  df_sec <- read_sheet(shtID, sheet = shtName_sec)
-  df_evt <- read_sheet(shtID, shtName_ev)
+  shtID <- Sys.getenv("shtID")
+  df_dt <- read_sheet(shtID, sheet = Sys.getenv("shtName_data"))
+  df_ctg <- read_sheet(shtID, sheet = Sys.getenv("shtName_ctg"))
+  df_mail <- read_sheet(shtID, sheet = Sys.getenv("shtName_mail"))
+  df_plc <- read_sheet(shtID, sheet = Sys.getenv("shtName_place"))
+  df_sec <- read_sheet(shtID, sheet = Sys.getenv("shtName_sec"))
+  df_evt <- read_sheet(shtID, Sys.getenv("shtName_ev"))
   
   # Merge Google sheets ----
   df_sht <- merge(df_dt, df_mail, by = "email", all.x = TRUE) %>%

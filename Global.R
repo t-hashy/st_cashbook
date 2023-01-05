@@ -15,7 +15,7 @@ library(GGally) # Multiple variables
 # Google
 library(googlesheets4) # Google sheet
 # Shiny
-library(shiny) # Shiny
+# library(shiny) # Shiny : can't deplow without comment this out.
 library(shinymanager) # Configuration
 library(fontawesome) # Fontawesome(fa)
 library(htmltools) # Arrange html
@@ -23,8 +23,8 @@ library(htmltools) # Arrange html
 # ==== Environmental Variables ====
 # Credentials
 credentials <- data.frame(
-  user = c("takahiro", "sana"),
-  password = c("hashimoto", "otsuka"),
+  user = c(Sys.getenv("user1_name"), Sys.getenv("user2_name")),
+  password = c(Sys.getenv("user1_pwd"), Sys.getenv("user2_pwd")),
   start = c("2022-01-01"),
   admin = c(TRUE, FALSE),
   comment = "Simple and secure authentification mechanism for sugle 'Shiny' applications.",
@@ -32,14 +32,6 @@ credentials <- data.frame(
 )
 # Methodology
 e <- sum(rep(1,100)/factorial(0:99))
-# Google Sheets
-shtID <- "1mt5h1BqQyojIZRxdNsPQSHivm8jZTPUmnx-Cd579YzE"
-shtName_data <- "Data"
-shtName_mail <- "lstEmails"
-shtName_place <- "lstPlaces"
-shtName_ctg <- "lstCategories"
-shtName_sec <- "lstSections"
-shtName_ev <- "lstEvents"
 
 # ==== Data Import ====
 df_all <- read_rds("./R/data/data.Rds")
