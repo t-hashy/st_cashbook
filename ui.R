@@ -1,6 +1,6 @@
 ui <- navbarPage(
   
-  # Base settings
+  # Base settings ====
   title = "CASH BOOK",
   id = "navPage",
   position = "static-top",
@@ -9,7 +9,7 @@ ui <- navbarPage(
   collapsible = TRUE,
   windowTitle = "CASH BOOK | sana and takahiro",
   
-  # Form and Table
+  # Form and Table 
   tabPanel(
     
     # Base settings
@@ -17,7 +17,7 @@ ui <- navbarPage(
     
     sidebarLayout(
       
-      # Input form
+      # Input form ====
       sidebarPanel(
         tags$h2("INPUT FORM"),
         inputPanel(
@@ -36,9 +36,8 @@ ui <- navbarPage(
         )
       ),
       
-      # Show table
+      # Show table ====
       mainPanel(
-        verbatimTextOutput("auth_output"),
         tags$h2("DATA TABLE"),
         tabsetPanel(
           tabPanel("DATA THE DAY", dataTableOutput("tableDay")),

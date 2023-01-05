@@ -1,19 +1,27 @@
-server <- function(input, output) {
+server <- function(input, output, session) {
   
-  # Check credentials
+  # ==== Delay loading ====
+  values <- reactiveValues(finished.init = FALSE)
+  session$onFlushed(function(){
+    values$finished.init <- TRUE
+  })
+  observe({
+    req(values$finished.init)
+    source("./scripts/global_delayed.R")
+  })
+  
+  # ==== Check credentials ====
   res_auth <- secure_server(
     check_credentials = check_credentials(credentials),
     keep_token = TRUE
   )
   
-  output$auth_output <- renderPrint(
-    reactiveValuesToList(res_auth)
-  )
-  
+  # ==== Input ui ====
   output$name_button <- renderUI({
     radioButtons("name_radio", label = "Name", choices = list("さな", "たかひろ"), selected = ifelse(res_auth$user == "takahiro","たかひろ","さな"),inline = FALSE)
   })
-    
+  
+  # ==== Output Data tables ====
   output$tableAll <- renderDataTable(
     datatable(
       df_all %>% select(!uid),
