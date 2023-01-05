@@ -22,7 +22,7 @@ ui <- navbarPage(
         tags$h2("INPUT FORM"),
         inputPanel(
           dateInput("date", label = "Date Purchased", value = tail(df_all$date,1)),
-          radioButtons("namer", label = "Name Radio", choices = list("たかひろ", "さな"), selected =  tail(df_all$name,1) ,inline = TRUE)
+          uiOutput("name_button")
         ),
         inputPanel(
           selectInput("place", label = "Place", choices = df_all$place[!is.na(df_all$place)], selected = tail(df_all$place[!is.na(df_all$place)],1)),
@@ -38,6 +38,7 @@ ui <- navbarPage(
       
       # Show table
       mainPanel(
+        verbatimTextOutput("auth_output"),
         tags$h2("DATA TABLE"),
         tabsetPanel(
           tabPanel("DATA THE DAY", dataTableOutput("tableDay")),
@@ -57,3 +58,5 @@ ui <- navbarPage(
     title = "MODELS"
   )
 )
+
+ui <- secure_app(ui)

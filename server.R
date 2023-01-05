@@ -1,4 +1,18 @@
 server <- function(input, output) {
+  
+  # Check credentials
+  res_auth <- secure_server(
+    check_credentials = check_credentials(credentials),
+    keep_token = TRUE
+  )
+  
+  output$auth_output <- renderPrint(
+    reactiveValuesToList(res_auth)
+  )
+  
+  output$name_button <- renderUI({
+    radioButtons("name_radio", label = "Name", choices = list("さな", "たかひろ"), selected = ifelse(res_auth$user == "takahiro","たかひろ","さな"),inline = FALSE)
+  })
     
   output$tableAll <- renderDataTable(
     datatable(

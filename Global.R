@@ -19,6 +19,7 @@ library(googlesheets4) # Google sheet
 
 # Shiny
 library(shiny) # Shiny
+library(shinymanager) # Configuration
 library(fontawesome) # Fontawesome(fa)
 library(htmltools) # Arrange html
 
@@ -35,6 +36,16 @@ shtName_place <- "lstPlaces"
 shtName_ctg <- "lstCategories"
 shtName_sec <- "lstSections"
 shtName_ev <- "lstEvents"
+
+# Credentials
+credentials <- data.frame(
+  user = c("takahiro", "sana"),
+  password = c("hashimoto", "otsuka"),
+  start = c("2022-01-01"),
+  admin = c(TRUE, FALSE),
+  comment = "Simple and secure authentification mechanism for sugle 'Shiny' applications.",
+  stringsAsFactors = FALSE
+)
 
 # ==== Data Import ====
 df_all <- read_rds("./R/data/data.Rds")
